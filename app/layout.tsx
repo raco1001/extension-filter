@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import '../styles/globals.css'
 
 export const metadata = {
   title: 'Next.js',
@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body suppressHydrationWarning={true}>{children}</body>
     </html>
   )
 }
