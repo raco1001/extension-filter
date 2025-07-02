@@ -1,3 +1,19 @@
+export interface FixedExtensionDB {
+  id: number
+  name: string
+  blocked: boolean
+}
+
+export interface CustomExtensionDB {
+  id: number
+  name: string
+}
+
+export interface ExtensionsResponse {
+  fixed: FixedExtensionDB[]
+  custom: CustomExtensionDB[]
+}
+
 export interface ApiResponse<T = any> {
   success: boolean
   data?: T
@@ -16,35 +32,6 @@ export interface PaginatedResponse<T> extends ApiResponse<T[]> {
   meta: PaginationMeta
 }
 
-export interface FixedExtensionDB {
-  id: number
-  name: string
-  blocked: boolean
-}
-
-export interface CustomExtensionDB {
-  id: number
-  name: string
-}
-
-export interface ExtensionsResponse {
-  fixed: FixedExtensionDB[]
-  custom: CustomExtensionDB[]
-}
-
-export interface UpdateFixedExtensionRequest {
-  name: string
-  blocked: boolean
-}
-
-export interface CreateCustomExtensionRequest {
-  name: string
-}
-
-export interface DeleteCustomExtensionRequest {
-  name: string
-}
-
 export enum ApiErrorCode {
   VALIDATION_ERROR = 'VALIDATION_ERROR',
   NOT_FOUND = 'NOT_FOUND',
@@ -58,12 +45,6 @@ export interface ApiError {
   message: string
   details?: any
 }
-
-export const EXTENSION_CONSTANTS = {
-  MAX_CUSTOM_EXTENSIONS: 200,
-  MAX_EXTENSION_LENGTH: 20,
-  MIN_EXTENSION_LENGTH: 1,
-} as const
 
 export const HTTP_STATUS = {
   OK: 200,

@@ -1,8 +1,55 @@
-import { createBrowserClient } from '@supabase/ssr'
+import { createClient } from '@supabase/supabase-js'
 
-export function createSupabaseBrowserClient() {
-  return createBrowserClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-  )
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error('Missing Supabase environment variables')
+}
+
+export const supabaseAdmin = createClient(
+  supabaseUrl,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  },
+)
+
+export const supabase = createClient(supabaseUrl, supabaseKey)
+
+export type Database = {
+  public: {
+    Tables: {
+      fixed_extensions: {
+        Row: {
+          id: number
+          name: string
+          blocked: boolean
+        }
+        Insert: {
+          name: string
+          blocked?: boolean
+        }
+        Update: {
+          name?: string
+          blocked?: boolean
+        }
+      }
+      custom_extensions: {
+        Row: {
+          id: number
+          name: string
+        }
+        Insert: {
+          name: string
+        }
+        Update: {
+          name?: string
+        }
+      }
+    }
+  }
 }
