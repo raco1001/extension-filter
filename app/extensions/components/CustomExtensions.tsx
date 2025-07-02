@@ -1,7 +1,6 @@
-import {
-  IBaseExtension,
-  EXTENSION_CONSTANTS,
-} from '@/app/components/extensions/BaseExtensions.type'
+import type { IBaseExtension } from '@/app/extensions/components/BaseExtensions'
+import { EXTENSION_CONSTANTS } from '@/app/extensions/components/BaseExtensions'
+
 import { useState } from 'react'
 
 export interface ICustomExtension extends IBaseExtension {
