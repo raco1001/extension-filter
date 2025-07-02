@@ -3,7 +3,7 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "regions": ["icn1", "sfo1"],
+  "regions": ["icn1"],
   "env": {
     "DATABASE_URL": "@database_url",
     "NODE_ENV": "production"
