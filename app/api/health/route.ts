@@ -1,4 +1,4 @@
-export const runtime = 'nodejs'
+export const runtime = 'edge'
 
 import { createHonoApp, createApiResponse } from '@/lib/hono/factory'
 import { handle } from 'hono/vercel'

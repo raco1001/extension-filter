@@ -1,11 +1,11 @@
 import { Suspense } from 'react'
-import { getExtensions } from '@/lib/db/queries'
+import { getAllExtensions } from '@/lib/supabase/queries'
 import { ExtensionsClient } from '@/app/extensions/components/ExtensionsClient'
 import { LoadingSkeleton } from '@/app/extensions/components/LoadingSkeleton'
 
 export default async function ExtensionsPage() {
   // 서버에서 직접 데이터 페칭 (API 레이어 생략)
-  const initialData = await getExtensions()
+  const initialData = await getAllExtensions()
 
   return (
     <div className="container mx-auto p-8 max-w-2xl bg-gray-50 min-h-screen">

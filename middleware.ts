@@ -4,32 +4,10 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const response = NextResponse.next()
 
-  // 보안 헤더 설정 (모든 요청에 적용)
-  response.headers.set('X-Content-Type-Options', 'nosniff')
-  response.headers.set('X-Frame-Options', 'DENY')
-  response.headers.set('X-XSS-Protection', '1; mode=block')
-  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin')
-
   // API 요청에 대한 추가 헤더
   if (request.nextUrl.pathname.startsWith('/api/')) {
     response.headers.set('X-API-Route', 'true')
     response.headers.set('X-API-Version', '2.0.0')
-
-    // CORS preflight 처리
-    if (request.method === 'OPTIONS') {
-      const corsResponse = new NextResponse(null, { status: 200 })
-      corsResponse.headers.set('Access-Control-Allow-Origin', '*')
-      corsResponse.headers.set(
-        'Access-Control-Allow-Methods',
-        'GET, POST, PUT, DELETE, OPTIONS',
-      )
-      corsResponse.headers.set(
-        'Access-Control-Allow-Headers',
-        'Content-Type, Authorization',
-      )
-      corsResponse.headers.set('Access-Control-Max-Age', '86400')
-      return corsResponse
-    }
   }
 
   // 정적 파일 캐싱 헤더

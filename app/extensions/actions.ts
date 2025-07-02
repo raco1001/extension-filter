@@ -2,9 +2,9 @@
 
 import {
   updateFixedExtension,
-  createCustomExtension,
+  addCustomExtension,
   deleteCustomExtension,
-} from '@/lib/db/queries'
+} from '@/lib/supabase/queries'
 import { revalidatePath } from 'next/cache'
 import type {
   UpdateFixedExtensionRequest,
@@ -40,7 +40,7 @@ export async function createCustomExtensionAction(
   data: CreateCustomExtensionRequest,
 ) {
   try {
-    const result = await createCustomExtension(data.name)
+    const result = await addCustomExtension(data.name)
     revalidatePath('/extensions')
 
     return {
