@@ -7,9 +7,10 @@ if (!supabaseUrl || !supabaseKey) {
   throw new Error('Missing Supabase environment variables')
 }
 
+// 개발/데모용: Anon Key 사용 (실제 프로덕션에서는 Service Role Key 권장)
 export const supabaseAdmin = createClient(
   supabaseUrl,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
+  supabaseKey, // Anon Key 사용
   {
     auth: {
       autoRefreshToken: false,
