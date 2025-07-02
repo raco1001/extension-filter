@@ -1,4 +1,4 @@
-import type { IBaseExtension } from '@/app/extensions/components/BaseExtensions.ts'
+import type { IBaseExtension } from '@/app/extensions/components/BaseExtensions'
 
 export interface IFixedExtension extends IBaseExtension {
   id: number
